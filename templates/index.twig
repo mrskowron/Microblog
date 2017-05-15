@@ -1,0 +1,46 @@
+{% extends "layout.twig" %}
+
+{% block pagetitle %} - Strona główna{% endblock %}
+
+{% block content %}
+<section id="content">
+
+    <h2>Ostatnie wpisy na blogu</h2>
+
+    {% for post in posts_list %}
+    <section class="post">
+        <h4><a href="{{ url('blog_post', {'id': post.id}) }}">{{post.title}}</a></h4>
+        <h5><em>{{post.date|format('d.m.Y, H:i')}}</em>, <small>{{post.author}}</small></h5>
+        <p>
+            {{post.content|slice(0, 250)}}[...]
+            <a href="{{ url('blog_post', {'id': post.id}) }}">Czytaj więcej</a>
+        </p>
+    </section>
+    {% endfor %}
+
+</section>
+
+<div class="pagination pagination-right">
+    <ul>
+        {% if curr_page == 1 %}
+            <li class="disabled"><a>&laquo;</a></li>
+        {% else %}
+            <li><a href="{{ url('home', {'page': (curr_page-1) }) }}">&laquo;</a></li>
+        {% endif %}
+        
+        {% for i in 1..last_page %}
+            <li{% if i == curr_page %} class="active"{% endif %}>
+                <a href="{{ url('home', {'page':i}) }}">{{ i }}</a>
+            </li>
+        {% endfor %}
+            
+        {% if curr_page == last_page %}
+            <li class="disabled"><a>&raquo;</a></li>
+        {% else %}
+            <li><a href="{{ url('home', {'page': (curr_page+1) }) }}">&raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
+
+

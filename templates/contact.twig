@@ -1,0 +1,27 @@
+{% extends "layout.twig" %}
+
+{% block pagetitle %} - Kontakt{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="contact">
+
+        <h2>Kontakt</h2>
+        
+        {% if app.session.has('msgConfirm') %}
+            <h5>{{ app.session.remove('msgConfirm') }}</h5>
+        {% else %}
+
+        <form class="form-horizontal" action="{{ url('contact') }}" method="post">
+            
+            {{ form_widget(form) }}
+
+            <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+        </form>
+         {% endif %}
+
+        <img src="img/kontakt.jpg" alt="" />
+
+    </section>
+{% endblock %}
+

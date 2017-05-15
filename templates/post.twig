@@ -1,0 +1,39 @@
+{% extends "layout.twig" %}
+
+{% block pagetitle %} - {{ post.title }}{% endblock %}
+
+{% block content %}
+    <section id="content">
+
+        <h2>{{ post.title }}</h2>
+        <h5><em>{{post.date|format('d.m.Y, H:i')}}</em>, <small>{{ post.author }}</small></h5>
+        <p>{{ post.content }}</p>
+
+        <div class="comments">
+
+            <h3>Komentarze:</h3>
+            
+            {% for comment in comments_list %}
+            <section class="comment">
+                <h6>{{ comment.author }} <small>({{ comment.date|format('d.m.Y, H:i') }})</small></h6>
+                <p>{{ comment.comment }}</p>                            
+            </section>
+            {% else %}
+                <h5>Brak komentarzy</h5>
+            {% endfor %}
+
+
+            <h3>Dodaj komentarz:</h3>
+
+            <form novalidate class="form-horizontal" action="{{ url('blog_post', {'id':post.id}) }}" method="post">
+               
+                
+                {{ form_widget(form) }}
+                
+                <button type="submit" class="btn btn-success">Dodaj komentarz</button>
+            </form>
+
+        </div>
+
+    </section>
+{% endblock %}

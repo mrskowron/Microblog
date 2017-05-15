@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MicroBlog{% block pagetitle %}{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" href="{{ app.request.baseUrl }}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ app.request.baseUrl }}/css/screen.css" />
+
+    </head>
+    <body>
+
+        <div id="outer-wrapper">
+            
+            <div id="inner-wrapper">
+                <header>
+                    <h1>Blog o Gotowaniu</h1>
+                    <div class="menu btn-group">
+                        <a class="btn btn-inverse" href="{{url('home')}}">Strona główna</a>
+                        <a class="btn btn-inverse" href="{{url('about')}}">O mnie</a>
+                        <a class="btn btn-inverse" href="{{url('contact')}}">Kontakt</a>
+                        <a class="btn btn-inverse" href="{{url('register')}}">Rejestracja</a>
+                        <a class="btn btn-inverse" href="{{url('login')}}">Wpis</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <img src="{{ app.request.baseUrl }}/img/babki.jpg" alt="" />
+                </header>
+
+            {% block content %}{% endblock %}
+              
+            </div>
+        
+
+            <footer>
+                Copyright &copy; 2016 Michał Skowron <i>"Using Silex framework to create a blog"</i>
+                <ul>
+                    <li><a href="{{url('home')}}">Strona główna</a></li>
+                    <li><a href="{{url('about')}}">O mnie</a></li>
+                    <li><a href="{{url('contact')}}">Kontakt</a></li>
+                    <li><a href="{{url('register')}}">Rejestracja</a></li>
+                    <li><a href="{{url('login')}}">Wpis</a></li>
+                </ul>
+            </footer>
+        </div>
+
+    </body>
+</html>

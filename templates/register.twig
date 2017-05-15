@@ -1,0 +1,20 @@
+{% extends "layout.twig" %}
+
+{% block pagetitle %} - Rejestracja{% endblock %}
+
+{% block content %}
+
+    <section id="content" class="register">
+
+        <h2>Załóż konto</h2>
+        
+        <form novalidate class="form-horizontal" action="{{ url('register') }}" method="post">
+        
+        {{ form_widget(form) }}
+                
+                <button type="submit" class="btn btn-success">Załóż konto</button>
+
+        </form>
+    </section>
+{% endblock %}
+
